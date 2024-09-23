@@ -13,7 +13,7 @@ public class CustomerController {
             new Customer(123, "Alejandro Duran", "alejandroduran", "contrasena123"),
             new Customer(456, "Ivan Torres", "ivantorres", "clave456"),
             new Customer(789, "Alexis Aguirre", "alexisaguirre", "secreto789"),
-            new Customer(123, "Ornelas Lopez", "ornelaslopez", "password234")
+            new Customer(358, "Ornelas Lopez", "ornelaslopez", "password234")
     ));
 
     @GetMapping("/clients")
@@ -49,5 +49,17 @@ public class CustomerController {
             }
         }
         return null; // Return null in an endpoint is a bad practice, however, for the sake of practicing is acceptable to do just for this case.
+    }
+
+    @DeleteMapping("/clients/{id}")
+    public Customer deleteClient(@PathVariable int id) {
+        for (Customer c : customers) {
+            if (c.getId() == id) {
+                customers.remove(c);
+
+                return c;
+            }
+        }
+        return null;
     }
 }
