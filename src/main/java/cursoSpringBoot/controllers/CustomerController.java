@@ -16,19 +16,19 @@ public class CustomerController {
             new Customer(358, "Ornelas Lopez", "ornelaslopez", "password234")
     ));
 
-    @GetMapping("/clients")
-    public List<Customer> getCustomers() {// Endpoint method
+    @GetMapping("/clients") // Get all the clients
+    public List<Customer> getCustomers() { // Endpoint method
         return customers;
     }
 
-    @GetMapping("/clients/{userName}")// Second endpoint method
-    public Customer getClient(@PathVariable String userName) {
+    @GetMapping("/clients/{userName}") // Get one client by ID
+    public Customer getClient(@PathVariable String userName) { // Second endpoint method
         for (Customer c : customers) {
             if(c.getUserName().equalsIgnoreCase(userName)) {
                 return c;
             }
         }
-        return null;
+        return null; // Return null in an endpoint is a bad practice, however, for the sake of practicing is acceptable to do just for this case.
     }
 
     @PostMapping("/clients")
@@ -37,7 +37,7 @@ public class CustomerController {
         return customer;
     }
 
-    @PutMapping("/clients")
+    @PutMapping("/clients") // When using PUT we have to update all the fields, but if we use PATCH, we only have to update only the one field to be updated
     public Customer putClient(@RequestBody Customer customer) {
         for (Customer c : customers) {
             if (c.getId() == customer.getId()) {
@@ -61,5 +61,25 @@ public class CustomerController {
             }
         }
         return null;
+    }
+
+    @PatchMapping("/clients") // When using PUT we have to update all the fields, but if we use PATCH, we only have to update only the one field to be updated
+    public  Customer patchClient(@RequestBody Customer customer) {
+        for (Customer c : customers) {
+            if (c.getId() == customer.getId()) {
+                if (customer.getName() != null) { // Changing the real name
+                    c.setName(customer.getName());
+                }
+                if (customer.getUserName() != null) { // Changing the username
+                    c.setUserName(customer.getUserName());
+                }
+                if (customer.getPassword() != null) { // Changing the password
+                    c.setPassword(customer.getPassword());
+                }
+
+                return  c;
+            }
+        }
+        return null; // Return null in an endpoint is a bad practice, however, for the sake of practicing is acceptable to do just for this case.
     }
 }
