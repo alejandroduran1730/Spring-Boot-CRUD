@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "name": "PC Monitor",
+    "price": 3000.00,
+    "stock": 15
+  },
+  {
+    "id": 2,
+    "name": "Dell PC",
+    "price": 4999.99,
+    "stock": 75
+  },
+  {
+    "id": 1,
+    "name": "Smartphone Motorola",
+    "price": 14999.99,
+    "stock": 1
+  },
+  {
+    "id": 1,
+    "name": "Xbox",
+    "price": 5999.99,
+    "stock": 100
+  }
+]
